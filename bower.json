@@ -1,0 +1,13 @@
+{
+  "name": "vittle",
+  "version": "0.0.0",
+  "main": "src/content.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "zepto": "~1.0.0"
+  }
+}
