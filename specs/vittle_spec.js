@@ -1,10 +1,18 @@
 describe('Vittle', function(){
   describe('#cleanText()', function(){
-    it("should remove leading numbers", function(){
-      var $el = $('<div>5.5 Vegetarian Summer Rolls (Goil Cuon Chay)</div>'),
+    var cleanTextFor = function(start){
+      var $el = $('<div>' + start + '</div>'),
         vittle = new Vittle($el);
 
-      expect(vittle.cleanText()).to.eql('Vegetarian Summer Rolls (Goil Cuon Chay)');
+      return vittle.cleanText();
+    };
+
+    it("should remove leading numbers", function(){
+      expect(cleanTextFor('5.5 Summer Rolls')).to.eql('Summer Rolls');
+    });
+
+    it("should remove surrounding whitespace", function(){
+      expect(cleanTextFor('    Yummy thing ')).to.eql('Yummy thing');
     });
   });
 });
