@@ -8,7 +8,7 @@
   "content_scripts": [
     {
       "matches": ["*://*.seamless.com/*"],
-      "js": ["components/zepto/zepto.js", "src/vittle.js", "src/content.js"]
+      "js": ["components/underscore/underscore.js", "components/zepto/zepto.js", "src/vittle.js", "src/content.js"]
     }
   ],
   "permissions": [
