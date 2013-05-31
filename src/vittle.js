@@ -1,15 +1,19 @@
-Vittle = function(el){
-  this.$el = $(el);
-};
+(function($){
+  'use strict';
 
-$.extend(Vittle.prototype, {
-  // remove leading/trailing whitespace and item number
-  cleanText: function(){
-    var text = this.$el.text();
-    return text.trim().replace(/^[\d\.]*\s*/, '');
-  },
+  window.Vittle = function(el){
+    this.$el = $(el);
+  };
 
-  tokens: function(){
-    
-  }
-});
+  $.extend(Vittle.prototype, {
+    // remove leading/trailing whitespace and item number
+    cleanText: function(){
+      var text = this.$el.text();
+      return text.trim().replace(/^[\d\.]*\s*/, '');
+    },
+
+    tokens: function(){
+
+    }
+  });
+})(Zepto);
