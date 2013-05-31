@@ -1,8 +1,10 @@
 describe('Vittle', function(){
   describe('#cleanText()', function(){
-    it('should return -1 when the value is not present', function(){
-      expect([1,2,3].indexOf(5)).to.eql(-1);
-      expect([1,2,3].indexOf(0)).to.eql(-1);
+    it("should remove leading numbers", function(){
+      var $el = $('<div>5.5 Vegetarian Summer Rolls (Goil Cuon Chay)</div>'),
+        vittle = new Vittle($el);
+
+      expect(vittle.cleanText()).to.eql('Vegetarian Summer Rolls (Goil Cuon Chay)');
     });
   });
 });
