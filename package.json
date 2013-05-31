@@ -1,0 +1,19 @@
+{
+  "name": "vittle",
+  "version": "0.0.0",
+  "description": "Shows previews of items on food ordering sites.",
+  "main": "src/content.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": "",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "~1.10.0",
+    "grunt": "~0.4.1",
+    "grunt-mocha": "~0.3.2",
+    "expect.js": "~0.2.0"
+  }
+}
