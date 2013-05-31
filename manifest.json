@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "Vittle",
+  "description": "Shows previews of items on food ordering sites.",
+  "version": "1.0",
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.seamless.com/*"],
+      "js": ["src/content.js"]
+    }
+  ],
+  "permissions": [
+    "*://*.seamless.com/"
+  ]
+}
