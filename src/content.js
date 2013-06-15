@@ -10,13 +10,16 @@
     var vittle = new Vittle(this);
     console.log(vittle.tokens());
 
-    vittle.getImageUrl(function(url){
-      console.log(url);
-      if (url){
+    vittle.getImageUrl().then(
+      function(url){
+        console.log(url);
         $thumb.attr('src', url);
         $thumb.show();
+      },
+      function(error){
+        console.log(error);
       }
-    });
+    );
   }, 800));
 
   $menu.on('mouseleave', 'li', function(){
