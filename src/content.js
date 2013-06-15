@@ -22,4 +22,4 @@
   $menu.on('mouseleave', 'li', function(){
     $thumb.hide();
   });
-})(Zepto);
+})(jQuery);

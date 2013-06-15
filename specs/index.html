@@ -6,7 +6,7 @@
 </head>
 <body>
   <div id="mocha"></div>
-  <script src="../components/zepto/zepto.js"></script>
+  <script src="../components/jquery/jquery.js"></script>
   <script src="../node_modules/expect.js/expect.js"></script>
   <script src="../node_modules/mocha/mocha.js"></script>
   <script src="../node_modules/grunt-mocha/phantomjs/bridge.js"></script>
@@ -15,7 +15,7 @@
   <script src="vittle_spec.js"></script>
   <script>
     mocha.checkLeaks();
-    mocha.globals(['Zepto']);
+    mocha.globals(['jQuery*']);
     mocha.run();
   </script>
 </body>
