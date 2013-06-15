@@ -18,5 +18,8 @@
   ],
   "permissions": [
     "*://*.seamless.com/"
+  ],
+  "web_accessible_resources": [
+    "assets/ajax-loader.gif"
   ]
 }
