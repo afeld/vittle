@@ -12,6 +12,7 @@
     'background-position': 'center center',
     'background-repeat': 'no-repeat',
     'background-size': '16px', // size of the ajax-loader
+    'box-shadow': '0 0 15px 3px',
     'min-width': '50px',
     'min-height': '50px',
     'max-width': '220px'
