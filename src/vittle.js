@@ -6,6 +6,8 @@
   var FLICKR_SIZES = ['n', 'm'].map(function(size){ return 'url_' + size; }),
     FLICKR_EXTRAS = FLICKR_SIZES.join(',');
 
+  var searchCache = {};
+
   window.Vittle = function(el){
     this.$el = $(el);
   };
@@ -37,7 +39,16 @@
         deferred;
 
       if (term){
-        deferred = this.searchFlickr(term);
+        var cachedUrl = searchCache[term];
+        if (cachedUrl){
+          deferred = $.Deferred().resolve(cachedUrl);
+        } else {
+          deferred = this.searchFlickr(term);
+          deferred.then(function(imageUrl){
+            // store in cache
+            searchCache[term] = imageUrl;
+          });
+        }
       } else {
         deferred = $.Deferred().reject('no terms found');
       }
