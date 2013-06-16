@@ -32,7 +32,7 @@
     }
   };
 
-  $menu.on('mouseenter', '[name="product"]', _.debounce(function(){
+  var onProductHover = function(){
     cancelVittle();
     // show the spinner
     $thumb.show();
@@ -51,10 +51,16 @@
         $thumb.hide();
       }
     );
-  }, 800));
+  };
 
-  $menu.on('mouseleave', 'li', function(){
-    cancelVittle();
-    $thumb.hide();
+  // http://cherne.net/brian/resources/jquery.hoverIntent.html
+  $menu.hoverIntent({
+    selector: '[name="product"]',
+    sensitivity: 4,
+    over: onProductHover,
+    out: function(){
+      cancelVittle();
+      $thumb.hide();
+    }
   });
 })(jQuery);

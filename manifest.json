@@ -10,6 +10,7 @@
       "matches": ["*://*.seamless.com/*"],
       "js": [
         "components/jquery/jquery.js",
+        "components/jquery-hoverIntent/jquery.hoverIntent.js",
         "components/underscore/underscore.js",
         "src/vittle.js",
         "src/content.js"
