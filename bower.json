@@ -9,7 +9,6 @@
   ],
   "dependencies": {
     "jquery": "~2.0.2",
-    "jquery-hoverIntent": "50f11356f87c96097b48879c1aa1cd994d9599b2",
-    "underscore": "~1.4.4"
+    "jquery-hoverIntent": "50f11356f87c96097b48879c1aa1cd994d9599b2"
   }
 }

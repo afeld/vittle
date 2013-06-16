@@ -33,7 +33,7 @@
     // returns a Promise
     getImageUrl: function(){
       var tokens = this.tokens(),
-        term = _.last(tokens),
+        term = tokens[tokens.length - 1],
         deferred;
 
       if (term){
