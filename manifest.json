@@ -12,6 +12,7 @@
         "components/jquery/jquery.js",
         "components/jquery-hoverIntent/jquery.hoverIntent.js",
         "src/vittle.js",
+        "src/preview.js",
         "src/content.js"
       ]
     }
