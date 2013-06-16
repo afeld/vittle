@@ -32,8 +32,7 @@
 
   // http://cherne.net/brian/resources/jquery.hoverIntent.html
   $('body').hoverIntent({
-    // TODO #mostOrderedItems
-    selector: '#menu [name="product"],#mostLikedItems td.main a',
+    selector: '#menu [name="product"],#mostOrderedItems td.main a,#mostLikedItems td.main a',
     sensitivity: 4,
     over: onProductHover,
     out: function(){
