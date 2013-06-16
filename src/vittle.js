@@ -37,29 +37,33 @@
         deferred;
 
       if (term){
-        var searchUrl = 'http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=e85aff8ce1c2fc44b92bccff30f92f7d&text=' + encodeURIComponent(term) + '&sort=relevance&format=json&nojsoncallback=1&per_page=1&media=photos&extras=' + FLICKR_EXTRAS;
-
-        this.xhr = $.getJSON(searchUrl);
-
-        deferred = this.xhr.then(function(data){
-          var photo = data.photos.photo[0];
-          if (photo){
-            // find the largest of the three image sizes
-            var imageUrl;
-            for (var i = 0; !imageUrl && i < FLICKR_SIZES.length; i++){
-              imageUrl = photo[FLICKR_SIZES[i]];
-            }
-            return imageUrl;
-          } else {
-            return $.Deferred().reject('no images found');
-          }
-        });
-
+        deferred = this.searchFlickr(term);
       } else {
         deferred = $.Deferred().reject('no terms found');
       }
 
       return deferred;
+    },
+
+    // returns a Promise
+    searchFlickr: function(term){
+      var searchUrl = 'http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=e85aff8ce1c2fc44b92bccff30f92f7d&text=' + encodeURIComponent(term) + '&sort=relevance&format=json&nojsoncallback=1&per_page=1&media=photos&extras=' + FLICKR_EXTRAS;
+
+      this.xhr = $.getJSON(searchUrl);
+
+      return this.xhr.then(function(data){
+        var photo = data.photos.photo[0];
+        if (photo){
+          // find the largest of the three image sizes
+          var imageUrl;
+          for (var i = 0; !imageUrl && i < FLICKR_SIZES.length; i++){
+            imageUrl = photo[FLICKR_SIZES[i]];
+          }
+          return imageUrl;
+        } else {
+          return $.Deferred().reject('no images found');
+        }
+      });
     },
 
     abortRequest: function(){
