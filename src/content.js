@@ -7,7 +7,6 @@
     if (currentVittle){
       currentVittle.abortRequest();
       currentVittle = null;
-      console.log('canceled');
     }
   };
 
@@ -16,15 +15,12 @@
     Preview.showSpinner();
 
     currentVittle = new Vittle(this);
-    console.log(currentVittle.tokens());
 
     currentVittle.getImageUrl().then(
       function(url){
-        console.log(url);
         Preview.showImage(url);
       },
-      function(error){
-        console.log(error);
+      function(){
         Preview.showFail();
       }
     );

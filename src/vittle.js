@@ -62,19 +62,35 @@
 
       this.xhr = $.getJSON(searchUrl);
 
-      return this.xhr.then(function(data){
-        var photo = data.photos.photo[0];
-        if (photo){
-          // find the largest of the three image sizes
-          var imageUrl;
-          for (var i = 0; !imageUrl && i < FLICKR_SIZES.length; i++){
-            imageUrl = photo[FLICKR_SIZES[i]];
+      return this.xhr.then(
+        function(data){
+          if (data.stat === 'fail'){
+            // special Flickr-style error (which is still a 200, for some reason)
+            // http://www.flickr.com/services/api/response.json.html
+            console.log(data.message);
+            return $.Deferred().reject(data.message);
+          } else {
+            var photo = data.photos.photo[0];
+            if (photo){
+              // find the largest of the three image sizes
+              var imageUrl;
+              for (var i = 0; !imageUrl && i < FLICKR_SIZES.length; i++){
+                imageUrl = photo[FLICKR_SIZES[i]];
+              }
+              return imageUrl;
+            } else {
+              return $.Deferred().reject('no images found');
+            }
           }
-          return imageUrl;
-        } else {
-          return $.Deferred().reject('no images found');
+        },
+        function(xhr, status, error){
+          var msg = status + ': ' + error;
+          if (status !== 'abort'){
+            console.log(msg);
+          }
+          return msg;
         }
-      });
+      );
     },
 
     abortRequest: function(){
