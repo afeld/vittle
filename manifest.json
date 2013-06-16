@@ -2,8 +2,9 @@
   "manifest_version": 2,
 
   "name": "Vittle",
-  "description": "Shows previews of items on food ordering sites.",
-  "version": "1.0",
+  "description": "Shows previews of items on food ordering sites - Seamless.com for now, but more to come.",
+  "homepage_url": "https://github.com/afeld/vittle",
+  "version": "1.0.0",
 
   "content_scripts": [
     {
