@@ -1,8 +1,7 @@
 (function($){
   'use strict';
 
-  var $menu = $('#menu'),
-    currentVittle;
+  var currentVittle;
 
   var cancelVittle = function(){
     if (currentVittle){
@@ -32,8 +31,9 @@
   };
 
   // http://cherne.net/brian/resources/jquery.hoverIntent.html
-  $menu.hoverIntent({
-    selector: '[name="product"]',
+  $('body').hoverIntent({
+    // TODO #mostOrderedItems
+    selector: '#menu [name="product"],#mostLikedItems td.main a',
     sensitivity: 4,
     over: onProductHover,
     out: function(){
