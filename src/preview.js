@@ -1,4 +1,6 @@
 (function($){
+  'use strict';
+
   var $thumb = $('<img/>'),
     spinnerUrl = chrome.extension.getURL('assets/ajax-loader.gif'),
     failUrl = chrome.extension.getURL('assets/red-x.svg');
@@ -15,11 +17,13 @@
     'box-shadow': '0 0 15px 3px',
     'min-width': '50px',
     'min-height': '50px',
-    'max-width': '220px'
+    'max-width': '220px',
+    'max-height': '210px'
   });
 
   $thumb.appendTo('body');
 
+  // singleton
   window.Preview = {
     showImage: function(url){
       $thumb.attr('src', url);
