@@ -1,15 +1,17 @@
 (function($){
   var $thumb = $('<img/>'),
-    spinnerUrl = chrome.extension.getURL('assets/ajax-loader.gif');
+    spinnerUrl = chrome.extension.getURL('assets/ajax-loader.gif'),
+    failUrl = chrome.extension.getURL('assets/red-x.svg');
 
   $thumb.css({
     position: 'fixed',
     bottom: 0,
     left: 0,
+    border: '1px solid black',
     'background-color': 'white',
-    'background-image': 'url("' + spinnerUrl + '")',
     'background-position': 'center center',
     'background-repeat': 'no-repeat',
+    'background-size': '16px', // size of the ajax-loader
     'min-width': '50px',
     'min-height': '50px',
     'max-width': '220px'
@@ -26,8 +28,16 @@
       $thumb.attr('src', '');
     },
     showSpinner: function(){
+      this.setBackgroundImage(spinnerUrl);
       this.clearImage();
       this.show();
+    },
+    showFail: function(){
+      this.setBackgroundImage(failUrl);
+      this.show();
+    },
+    setBackgroundImage: function(url){
+      $thumb.css('background-image', 'url("' + url + '")');
     },
     show: function(){
       $thumb.show();
@@ -36,4 +46,7 @@
       $thumb.hide();
     }
   };
+
+  // hide it initially
+  Preview.hide();
 })(jQuery);

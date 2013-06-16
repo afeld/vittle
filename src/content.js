@@ -26,7 +26,7 @@
       },
       function(error){
         console.log(error);
-        Preview.hide();
+        Preview.showFail();
       }
     );
   };
