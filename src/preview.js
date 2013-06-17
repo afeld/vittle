@@ -28,24 +28,24 @@
   window.Preview = {
     showImage: function(url){
       $thumb.attr('src', url);
-      this.show();
+      this._show();
     },
-    clearImage: function(){
+    _clearImage: function(){
       $thumb.attr('src', '');
     },
     showSpinner: function(){
-      this.setBackgroundImage(spinnerUrl);
-      this.clearImage();
-      this.show();
+      this._setBackgroundImage(spinnerUrl);
+      this._clearImage();
+      this._show();
     },
     showFail: function(){
-      this.setBackgroundImage(failUrl);
-      this.show();
+      this._setBackgroundImage(failUrl);
+      this._show();
     },
-    setBackgroundImage: function(url){
+    _setBackgroundImage: function(url){
       $thumb.css('background-image', 'url("' + url + '")');
     },
-    show: function(){
+    _show: function(){
       $thumb.show();
     },
     hide: function(){

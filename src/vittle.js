@@ -58,39 +58,49 @@
 
     // returns a Promise
     searchFlickr: function(term){
-      var searchUrl = 'http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=e85aff8ce1c2fc44b92bccff30f92f7d&text=' + encodeURIComponent(term) + '&sort=relevance&format=json&nojsoncallback=1&per_page=1&media=photos&extras=' + FLICKR_EXTRAS;
+      var searchUrl = 'http://api.flickr.com/services/rest/?' + $.param({
+        method: 'flickr.photos.search',
+        api_key: 'e85aff8ce1c2fc44b92bccff30f92f7d',
+        text: term,
+        sort: 'relevance',
+        format: 'json',
+        nojsoncallback: '1',
+        per_page: 1,
+        media: 'photos',
+        extras: FLICKR_EXTRAS
+      });
 
       this.xhr = $.getJSON(searchUrl);
+      return this.xhr.then(this._onXhrDone, this._onXhrFail);
+    },
 
-      return this.xhr.then(
-        function(data){
-          if (data.stat === 'fail'){
-            // special Flickr-style error (which is still a 200, for some reason)
-            // http://www.flickr.com/services/api/response.json.html
-            console.log(data.message);
-            return $.Deferred().reject(data.message);
-          } else {
-            var photo = data.photos.photo[0];
-            if (photo){
-              // find the largest of the three image sizes
-              var imageUrl;
-              for (var i = 0; !imageUrl && i < FLICKR_SIZES.length; i++){
-                imageUrl = photo[FLICKR_SIZES[i]];
-              }
-              return imageUrl;
-            } else {
-              return $.Deferred().reject('no images found');
-            }
+    _onXhrDone: function(data){
+      if (data.stat === 'fail'){
+        // special Flickr-style error (which is still a 200, for some reason)
+        // http://www.flickr.com/services/api/response.json.html
+        console.log(data.message);
+        return $.Deferred().reject(data.message);
+      } else {
+        var photo = data.photos.photo[0];
+        if (photo){
+          // find the largest of the three image sizes
+          var imageUrl;
+          for (var i = 0; !imageUrl && i < FLICKR_SIZES.length; i++){
+            imageUrl = photo[FLICKR_SIZES[i]];
           }
-        },
-        function(xhr, status, error){
-          var msg = status + ': ' + error;
-          if (status !== 'abort'){
-            console.log(msg);
-          }
-          return msg;
+          return imageUrl;
+        } else {
+          return $.Deferred().reject('no images found');
         }
-      );
+      }
+    },
+
+    _onXhrFail: function(xhr, status, error){
+      var msg = status + ': ' + error;
+      if (status !== 'abort'){
+        console.log(msg);
+      }
+      return msg;
     },
 
     abortRequest: function(){
