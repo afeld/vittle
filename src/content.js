@@ -5,7 +5,8 @@
 
   var selectors = {
     'www.seamless.com': '#menu [name="product"],#mostOrderedItems td.main a,#mostLikedItems td.main a',
-    'www.menupages.com': '#restaurant-menu th'
+    'www.menupages.com': '#restaurant-menu th',
+    'foursquare.com': '#venueMenu .entry .title'
   }
 
   var cancelVittle = function(){

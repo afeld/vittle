@@ -10,7 +10,8 @@
     {
       "matches": [
         "*://*.seamless.com/*",
-        "*://*.menupages.com/*/*/menu"
+        "*://*.menupages.com/*/*/menu",
+        "*://foursquare.com/v/*/*/menu"
       ],
       "js": [
         "components/jquery/jquery.js",
@@ -23,7 +24,8 @@
   ],
   "permissions": [
     "*://*.seamless.com/",
-    "*://*.menupages.com/"
+    "*://*.menupages.com/",
+    "*://foursquare.com/"
   ],
   "web_accessible_resources": [
     "assets/*"
