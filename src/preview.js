@@ -18,7 +18,8 @@
     'min-width': '50px',
     'min-height': '50px',
     'max-width': '220px',
-    'max-height': '210px'
+    'max-height': '210px',
+    'z-index': '10'
   });
 
   $thumb.appendTo('body');
