@@ -3,7 +3,7 @@
 
   var SELECTORS = {
     'seamless': '#menu [name="product"],#mostOrderedItems td.main a,#mostLikedItems td.main a',
-    'menupages': '#restaurant-menu th',
+    'menupages': '#restaurant-menu th cite',
     'foursquare': '#venueMenu .entry .title'
   };
 
