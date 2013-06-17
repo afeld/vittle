@@ -6,7 +6,12 @@
   var FLICKR_SIZES = ['n', 'm'].map(function(size){ return 'url_' + size; }),
     FLICKR_EXTRAS = FLICKR_SIZES.join(',');
 
+  // http://www.flickr.com/services/api/misc.overview.html
+  var isSecure = window.location.protocol === 'https:',
+    ENDPOINT = isSecure ? 'https://secure.flickr.com/services' : 'http://api.flickr.com/services';
+
   var searchCache = {};
+
 
   window.Vittle = function(el){
     this.$el = $(el);
@@ -58,7 +63,7 @@
 
     // returns a Promise
     searchFlickr: function(term){
-      var searchUrl = 'http://api.flickr.com/services/rest/?' + $.param({
+      var searchUrl = ENDPOINT + '/rest/?' + $.param({
         method: 'flickr.photos.search',
         api_key: 'e85aff8ce1c2fc44b92bccff30f92f7d',
         text: term,
@@ -81,14 +86,17 @@
         console.log(data.message);
         return $.Deferred().reject(data.message);
       } else {
-        var photo = data.photos.photo[0];
-        if (photo){
+        var photoObj = data.photos.photo[0];
+        if (photoObj){
           // find the largest of the three image sizes
-          var imageUrl;
-          for (var i = 0; !imageUrl && i < FLICKR_SIZES.length; i++){
-            imageUrl = photo[FLICKR_SIZES[i]];
+          var photoUrl;
+          for (var i = 0; !photoUrl && i < FLICKR_SIZES.length; i++){
+            photoUrl = photoObj[FLICKR_SIZES[i]];
           }
-          return imageUrl;
+          if (isSecure){
+            photoUrl = photoUrl.replace(/^http:/, 'https:');
+          }
+          return photoUrl;
         } else {
           return $.Deferred().reject('no images found');
         }
