@@ -16,5 +16,5 @@ To tweak the project:
 ## Packaging
 
 ```bash
-grunt compress
+grunt -v compress
 ```
