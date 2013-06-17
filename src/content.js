@@ -1,13 +1,13 @@
 (function($){
   'use strict';
 
-  var currentVittle;
+  var SELECTORS = {
+    'seamless': '#menu [name="product"],#mostOrderedItems td.main a,#mostLikedItems td.main a',
+    'menupages': '#restaurant-menu th',
+    'foursquare': '#venueMenu .entry .title'
+  };
 
-  var selectors = {
-    'www.seamless.com': '#menu [name="product"],#mostOrderedItems td.main a,#mostLikedItems td.main a',
-    'www.menupages.com': '#restaurant-menu th',
-    'foursquare.com': '#venueMenu .entry .title'
-  }
+  var currentVittle;
 
   var cancelVittle = function(){
     if (currentVittle){
@@ -32,9 +32,17 @@
     );
   };
 
+  var domainParts = window.location.host.split('.'),
+    secondLevelDomain = domainParts[domainParts.length - 2],
+    selector = SELECTORS[secondLevelDomain];
+
+  if (!selector){
+    console.warn('could not find selector for ' + secondLevelDomain);
+  }
+
   // http://cherne.net/brian/resources/jquery.hoverIntent.html
   $('body').hoverIntent({
-    selector: selectors[document.domain],
+    selector: selector,
     sensitivity: 4,
     over: onProductHover,
     out: function(){
