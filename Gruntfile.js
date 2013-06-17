@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         options: {
           archive: '../vittle.zip'
         },
-        src: ['**/*', '!.git/', '!specs/', '!node_modules/', '*sublime-*']
+        src: ['**/*', '!.git/**/*', '!specs/**/*', '!node_modules/**/*', '*sublime-*']
       }
     },
     mocha: {
