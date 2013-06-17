@@ -3,6 +3,12 @@
 
   var currentVittle;
 
+  var selectors = {
+    'www.seamless.com': '#menu [name="product"],#mostOrderedItems td.main a,#mostLikedItems td.main a',
+    'www.menupages.com': '#restaurant-menu th',
+    'foursquare.com': '#venueMenu .entry .title'
+  }
+
   var cancelVittle = function(){
     if (currentVittle){
       currentVittle.abortRequest();
@@ -28,7 +34,7 @@
 
   // http://cherne.net/brian/resources/jquery.hoverIntent.html
   $('body').hoverIntent({
-    selector: '#menu [name="product"],#mostOrderedItems td.main a,#mostLikedItems td.main a',
+    selector: selectors[document.domain],
     sensitivity: 4,
     over: onProductHover,
     out: function(){

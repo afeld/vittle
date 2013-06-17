@@ -8,7 +8,11 @@
 
   "content_scripts": [
     {
-      "matches": ["*://*.seamless.com/*"],
+      "matches": [
+        "*://*.seamless.com/*",
+        "*://*.menupages.com/*/*/menu",
+        "*://foursquare.com/v/*/*/menu"
+      ],
       "js": [
         "components/jquery/jquery.js",
         "components/jquery-hoverIntent/jquery.hoverIntent.js",
@@ -19,7 +23,9 @@
     }
   ],
   "permissions": [
-    "*://*.seamless.com/"
+    "*://*.seamless.com/",
+    "*://*.menupages.com/",
+    "*://foursquare.com/"
   ],
   "web_accessible_resources": [
     "assets/*"
